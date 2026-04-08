@@ -11,8 +11,8 @@ interface SquareBorderProps {
 
 export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cycleKey, transitionMs = 1000 }) => {
   // Path para um retângulo arredondado de 100x100 com raio de 20 (20%)
-  // Começamos no topo esquerdo após o arredondamento: (20, 0)
-  const pathData = "M 20,0 H 80 A 20 20 0 0 1 100 20 V 80 A 20 20 0 0 1 80 100 H 20 A 20 20 0 0 1 0 80 V 20 A 20 20 0 0 1 20 0 Z";
+  // O início foi deslocado em 50% do raio (45 graus no arco), começando em (5.86, 5.86)
+  const pathData = "M 5.86,5.86 A 20 20 0 0 1 20 0 H 80 A 20 20 0 0 1 100 20 V 80 A 20 20 0 0 1 80 100 H 20 A 20 20 0 0 1 0 80 V 20 A 20 20 0 0 1 5.86 5.86 Z";
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
