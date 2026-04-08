@@ -1,0 +1,100 @@
+:root {
+  --bgApp: #000000;
+  --corPuxa: #A8E6CF;
+  --corSegura: #FFD3B6;
+  --corSolta: #DCEDC1;
+  --corEspera: #FFAAA5;
+  --labelOpacity: 0.25;
+  --controlOpacity: 0.40;
+  
+  /* Parametrização do Quadrado */
+  --square-size-vw: 25vw;
+  --square-min-size: 250px;
+  --square-radius: 20%;
+  --square-base-opacity: 0.2;
+  --active-stroke-width: 4;
+  --glow-intensity: 8px;
+  --glow-opacity: 0.6;
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bgApp);
+  color: white;
+  font-family: var(--font-sans);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.zen-page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.zen-square-container {
+  position: relative;
+  width: var(--square-size-vw);
+  height: var(--square-size-vw);
+  min-width: var(--square-min-size);
+  min-height: var(--square-min-size);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zen-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.timer-text {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-align: center;
+}
+
+.phase-label {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* Utilities */
+.absolute { position: absolute; }
+.inset-0 { inset: 0; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.pointer-events-none { pointer-events: none; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; }
+.duration-1000 { transition-duration: 1000ms; }
+.opacity-\[0\.03\] { opacity: 0.03; }
