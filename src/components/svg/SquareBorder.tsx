@@ -6,9 +6,10 @@ interface SquareBorderProps {
   color: string;
   faseAtual?: number; // 0 to 3
   cycleKey: number;
+  transitionMs?: number;
 }
 
-export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cycleKey }) => {
+export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cycleKey, transitionMs = 1000 }) => {
   // Path para um retângulo arredondado de 100x100 com raio de 20 (20%)
   // Começamos no topo esquerdo após o arredondamento: (20, 0)
   const pathData = "M 20,0 H 80 A 20 20 0 0 1 100 20 V 80 A 20 20 0 0 1 80 100 H 20 A 20 20 0 0 1 0 80 V 20 A 20 20 0 0 1 20 0 Z";
@@ -21,7 +22,8 @@ export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cyc
         style={{ 
           overflow: 'visible',
           filter: `drop-shadow(0 0 var(--glow-intensity) ${color})`,
-          display: 'block' // Garante que o SVG não tenha espaços extras
+          display: 'block',
+          transition: `filter ${transitionMs}ms ease-in-out`
         }}
       >
         {/* Esqueleto do Quadrado (Base) */}
@@ -54,10 +56,12 @@ export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cyc
             exit={{ opacity: 0 }}
             transition={{ 
               pathLength: { duration: 0.1, ease: "linear" },
-              opacity: { duration: 0.3 }
+              opacity: { duration: transitionMs / 1000 },
+              stroke: { duration: transitionMs / 1000 }
             }}
             style={{ 
-              strokeWidth: 'var(--active-stroke-width)'
+              strokeWidth: 'var(--active-stroke-width)',
+              transition: `stroke ${transitionMs}ms ease-in-out`
             }}
           />
         </AnimatePresence>
@@ -78,11 +82,13 @@ export const SquareBorder: React.FC<SquareBorderProps> = ({ progress, color, cyc
             exit={{ opacity: 0 }}
             transition={{ 
               pathLength: { duration: 0.1, ease: "linear" },
-              opacity: { duration: 0.3 }
+              opacity: { duration: transitionMs / 1000 },
+              stroke: { duration: transitionMs / 1000 }
             }}
             style={{ 
               strokeWidth: 'var(--active-stroke-width)',
-              filter: 'blur(calc(var(--glow-intensity) / 2))'
+              filter: 'blur(calc(var(--glow-intensity) / 2))',
+              transition: `stroke ${transitionMs}ms ease-in-out`
             }}
           />
         </AnimatePresence>
